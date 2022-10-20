@@ -54,8 +54,8 @@ class BoardTest {
     }
 
     @Test
-    public void creatingBoard_Has20Pawns_WhenLengthIs10() {
-        int expected = 20;
+    public void creatingBoard_Has40Pawns_WhenLengthIs10() {
+        int expected = 40;
 
         Pawn[][] board = new Board(10).getBoard();
         int actual = getPawnCount(board);
@@ -64,8 +64,8 @@ class BoardTest {
     }
 
     @Test
-    public void creatingBoard_Has30Pawns_WhenLengthIs15() {
-        int expected = 30;
+    public void creatingBoard_Has60Pawns_WhenLengthIs15() {
+        int expected = 60;
 
         Pawn[][] board = new Board(15).getBoard();
         int actual = getPawnCount(board);
@@ -74,8 +74,8 @@ class BoardTest {
     }
 
     @Test
-    public void creatingBoard_Has40Pawns_WhenLengthIs20() {
-        int expected = 40;
+    public void creatingBoard_Has80Pawns_WhenLengthIs20() {
+        int expected = 80;
 
         Pawn[][] board = new Board(20).getBoard();
         int actual = getPawnCount(board);
