@@ -27,7 +27,7 @@ public class Board {
                 for (int j = 0; j < boardLength; j++) {
                     int colParity = j % 2;
                     if (rowParity == colParity) {
-                        boolean createWhitePawn = (i < 4);
+                        boolean createWhitePawn = (i < whitePawnThresholdIndex);
                         if (createWhitePawn) {
                             board[i][j] = new Pawn("white", new Coordinates(j, i));
                         } else {
