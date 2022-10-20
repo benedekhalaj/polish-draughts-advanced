@@ -53,4 +53,76 @@ class BoardTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void creatingBoard_Has20Pawns_WhenLengthIs10() {
+        int expected = 20;
+
+        Pawn[][] board = new Board(10).getBoard();
+        int actual = getPawnCount(board);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void creatingBoard_Has30Pawns_WhenLengthIs15() {
+        int expected = 30;
+
+        Pawn[][] board = new Board(15).getBoard();
+        int actual = getPawnCount(board);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void creatingBoard_Has40Pawns_WhenLengthIs20() {
+        int expected = 40;
+
+        Pawn[][] board = new Board(20).getBoard();
+        int actual = getPawnCount(board);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void creatingBoard_HasAPawn_AtFirstRowFirstColumn() {
+        Board board = new Board(10);
+        Pawn[][] pawns = board.getBoard();
+        Pawn pawn = pawns[0][0];
+
+        assertNotNull(pawn);
+    }
+
+    @Test
+    public void creatingBoard_DoesNotHaveAPawn_AtFirstRowSecondColumn() {
+        Board board = new Board(10);
+        Pawn[][] pawns = board.getBoard();
+        Pawn pawn = pawns[0][1];
+
+        assertNull(pawn);
+    }
+
+    @Test
+    public void creatingBoard_HasTwoEmptyRowsAtTheMiddle_WhenLengthIs10() {
+        Board board = new Board(10);
+        Pawn[][] pawns = board.getBoard();
+
+        Pawn[][] middleRows = new Pawn[][]{pawns[4], pawns[5]};
+
+        int expected = 0;
+        int actual = getPawnCount(middleRows);
+
+        assertEquals(expected, actual);
+    }
+
+    private int getPawnCount(Pawn[][] board) {
+        int count = 0;
+        for (Pawn[] pawns : board) {
+            for (Pawn pawn : pawns) {
+                if (pawn != null) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 }
