@@ -8,7 +8,25 @@ public class Game {
     private boolean isRunning = false;
 
     public void start() {
-        // TODO
+        printGameStartText();
+        isRunning = true;
+        while (isRunning) {
+            playRound();
+            switchPlayer();
+        }
+    }
+
+    private static void printGameStartText() {
+        System.out.println("Hello Dear Players! Let's start our Polish Draughts Adventure!");
+        System.out.println("---------------------- POLISH DRAUGHTS -----------------------");
+    }
+
+    private void switchPlayer() {
+        if (currentPlayer == PLAYER_1) {
+            currentPlayer = PLAYER_2;
+        } else {
+            currentPlayer = PLAYER_1;
+        }
     }
 
     private void playRound() {
