@@ -39,17 +39,17 @@ public class Board {
         }
     }
 
-    public void removePawn(Coordinates position) {
-        int col = position.getY();
-        int row = position.getX();
+    public void removePawn(Cell position) {
+        int row = position.getRow();
+        int col = position.getColumn();
         board[row][col] = null;
     }
 
-    public void movePawn(Coordinates startingPosition, Coordinates newPosition) {
-        int startingCol = startingPosition.getY();
-        int startingRow = startingPosition.getX();
-        int newCol = newPosition.getY();
-        int newRow = newPosition.getX();
+    public void movePawn(Cell startingPosition, Cell newPosition) {
+        int startingRow = startingPosition.getRow();
+        int startingCol = startingPosition.getColumn();
+        int newRow = newPosition.getRow();
+        int newCol = newPosition.getColumn();
         Pawn pawn = board[startingRow][startingCol];
         board[newRow][newCol] = pawn;
         removePawn(startingPosition);
