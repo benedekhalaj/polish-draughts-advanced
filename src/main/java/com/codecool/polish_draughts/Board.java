@@ -29,9 +29,9 @@ public class Board {
                     if (rowParity == colParity) {
                         boolean createWhitePawn = (i < whitePawnThresholdIndex);
                         if (createWhitePawn) {
-                            board[i][j] = new Pawn("white", new Coordinates(j, i));
+                            board[i][j] = new Pawn("white");
                         } else {
-                            board[i][j] = new Pawn("black", new Coordinates(j, i));
+                            board[i][j] = new Pawn("black");
                         }
                     }
                 }
@@ -40,15 +40,19 @@ public class Board {
     }
 
     public void removePawn(Coordinates position) {
-        int col = position.getX();
-        int row = position.getY();
+        int col = position.getY();
+        int row = position.getX();
         board[row][col] = null;
     }
 
-    public void movePawn(Coordinates initialPosition, Coordinates newPosition) {
-        int col = initialPosition.getX();
-        int row = initialPosition.getY();
-        board[row][col].setPosition(newPosition);
+    public void movePawn(Coordinates startingPosition, Coordinates newPosition) {
+        int startingCol = startingPosition.getY();
+        int startingRow = startingPosition.getX();
+        int newCol = newPosition.getY();
+        int newRow = newPosition.getX();
+        Pawn pawn = board[startingRow][startingCol];
+        board[newRow][newCol] = pawn;
+        removePawn(startingPosition);
     }
 
     public Pawn[][] getBoard() {
