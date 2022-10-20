@@ -13,6 +13,30 @@ public class Board {
                     .formatted(boardLength, MINIMUM_BOARD_LENGTH, MAXIMUM_BOARD_LENGTH));
         }
         this.boardLength = boardLength;
+        initBoard(boardLength);
+    }
+
+    private void initBoard(int boardLength) {
+        this.board = new Pawn[boardLength][boardLength];
+        int whitePawnThresholdIndex = 4;
+        int blackPawnThresholdIndex = boardLength - 5;
+        for (int i = 0; i < boardLength; i++) {
+            boolean inThreshold = (i < whitePawnThresholdIndex || i > blackPawnThresholdIndex);
+            int rowParity = i % 2;
+            if (inThreshold) {
+                for (int j = 0; j < boardLength; j++) {
+                    int colParity = j % 2;
+                    if (rowParity == colParity) {
+                        boolean createWhitePawn = (i < 4);
+                        if (createWhitePawn) {
+                            board[i][j] = new Pawn("white", new Coordinates(j, i));
+                        } else {
+                            board[i][j] = new Pawn("black", new Coordinates(j, i));
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void removePawn(Coordinates position) {
