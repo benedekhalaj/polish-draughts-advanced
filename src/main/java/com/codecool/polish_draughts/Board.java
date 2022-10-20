@@ -5,7 +5,7 @@ public class Board {
     private static final int MINIMUM_BOARD_LENGTH = 10;
     private static final int MAXIMUM_BOARD_LENGTH = 20;
     private Pawn[][] board;
-    private int boardLength;
+    private final int boardLength;
 
     public Board(int boardLength) {
         if (boardLength < MINIMUM_BOARD_LENGTH || boardLength > MAXIMUM_BOARD_LENGTH) {
@@ -13,28 +13,27 @@ public class Board {
                     .formatted(boardLength, MINIMUM_BOARD_LENGTH, MAXIMUM_BOARD_LENGTH));
         }
         this.boardLength = boardLength;
-        initBoard(boardLength);
+        initBoard();
     }
 
-    private void initBoard(int boardLength) {
-        this.board = new Pawn[boardLength][boardLength];
+    private void initBoard() {
+        board = new Pawn[boardLength][boardLength];
         int whitePawnThresholdIndex = 4;
         int blackPawnThresholdIndex = boardLength - 5;
-        for (int i = 0; i < boardLength; i++) {
-            boolean inThreshold = (i < whitePawnThresholdIndex || i > blackPawnThresholdIndex);
-            int rowParity = i % 2;
-            if (inThreshold) {
-                for (int j = 0; j < boardLength; j++) {
-                    int colParity = j % 2;
-                    if (rowParity == colParity) {
-                        boolean createWhitePawn = (i < whitePawnThresholdIndex);
-                        if (createWhitePawn) {
-                            board[i][j] = new Pawn("white");
-                        } else {
-                            board[i][j] = new Pawn("black");
-                        }
-                    }
+        for (int row = 0; row < boardLength; row++) {
+            boolean inThreshold = (row < whitePawnThresholdIndex || row > blackPawnThresholdIndex);
+            if (!inThreshold) {
+                continue;
+            }
+            int rowParity = row % 2;
+            for (int col = 0; col < boardLength; col++) {
+                int colParity = col % 2;
+                if (rowParity != colParity) {
+                    continue;
                 }
+                boolean isWhitePawn = row < whitePawnThresholdIndex;
+                String color = (isWhitePawn) ? "white" : "black";
+                board[row][col] = new Pawn(color);
             }
         }
     }
@@ -62,12 +61,6 @@ public class Board {
     public int getBoardLength() {
         return boardLength;
     }
-
-    public void setBoardLength(int boardLength) {
-        this.boardLength = boardLength;
-    }
-
-
 
     @Override
     public String toString() {
