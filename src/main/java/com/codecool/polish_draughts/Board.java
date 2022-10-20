@@ -40,10 +40,15 @@ public class Board {
     }
 
     public void removePawn(Coordinates position) {
+        int col = position.getX();
+        int row = position.getY();
+        board[row][col] = null;
     }
 
     public void movePawn(Coordinates initialPosition, Coordinates newPosition) {
-        // TODO
+        int col = initialPosition.getX();
+        int row = initialPosition.getY();
+        board[row][col].setPosition(newPosition);
     }
 
     public Pawn[][] getBoard() {
