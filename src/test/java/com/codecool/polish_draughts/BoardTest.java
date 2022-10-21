@@ -2,6 +2,8 @@ package com.codecool.polish_draughts;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
@@ -125,4 +127,52 @@ class BoardTest {
         }
         return count;
     }
+
+    @Test
+    public void removePawn_RemovesPawn_WhenCalledWithPawnCoordinates() {
+        Board board = getEmptyBoard();
+        Pawn[][] pawns = board.getBoard();
+        pawns[0][0] = new Pawn("white");
+
+        board.removePawn(new Cell(0, 0));
+
+        assertNull(pawns[0][0]);
+    }
+
+    @Test
+    public void movePawn_RemovesPawnFromOldPosition_WhenCalledWithPawnCoordinates() {
+        Board board = getEmptyBoard();
+        Pawn[][] pawns = board.getBoard();
+        pawns[0][0] = new Pawn("white");
+        Cell startingPosition = new Cell(0, 0);
+        Cell newPosition = new Cell(1, 0);
+
+        board.movePawn(startingPosition, newPosition);
+
+        assertNull(pawns[0][0]);
+
+    }
+
+    @Test
+    public void movePawn_MovesPawnToNewPosition_WhenCalledWithPawnCoordinates() {
+        Board board = getEmptyBoard();
+        Pawn[][] pawns = board.getBoard();
+        pawns[0][0] = new Pawn("white");
+        Cell startingPosition = new Cell(0, 0);
+        Cell newPosition = new Cell(1, 0);
+
+        board.movePawn(startingPosition, newPosition);
+
+        assertNotNull(pawns[1][0]);
+    }
+
+    private Board getEmptyBoard() {
+        Board board = new Board(10);
+        Pawn[][] pawns = board.getBoard();
+        for (Pawn[] pawn : pawns) {
+            Arrays.fill(pawn, null);
+        }
+        return board;
+    }
+
 }
