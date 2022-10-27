@@ -1,5 +1,8 @@
 package com.codecool.polish_draughts;
 
+import com.codecool.polish_draughts.model.Board;
+import com.codecool.polish_draughts.model.Cell;
+import com.codecool.polish_draughts.model.Pawn;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

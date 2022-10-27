@@ -1,5 +1,6 @@
 package com.codecool.polish_draughts;
 
+import com.codecool.polish_draughts.model.Cell;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

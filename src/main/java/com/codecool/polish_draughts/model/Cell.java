@@ -1,4 +1,4 @@
-package com.codecool.polish_draughts;
+package com.codecool.polish_draughts.model;
 
 import java.util.Objects;
 
