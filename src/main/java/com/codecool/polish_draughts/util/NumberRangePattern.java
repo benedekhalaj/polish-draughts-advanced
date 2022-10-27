@@ -1,14 +1,20 @@
 package com.codecool.polish_draughts.util;
 
+import io.vavr.control.Either;
+
 public class NumberRangePattern {
 
-    private final String pattern;
+    private static final int MINIMUM_NUMBER = 1;
+    private static final int MAXIMUM_NUMBER = 99;
 
-    public NumberRangePattern(int number) throws IllegalArgumentException {
-        if (number >= 100 || number < 1) {
-            throw new IllegalArgumentException("Number must be between 1 and 99");
+    private final Either<String, String> pattern;
+
+    public NumberRangePattern(int number) {
+        if (number > MAXIMUM_NUMBER || number < MINIMUM_NUMBER) {
+            this.pattern = Either.left("Number must be between 1 and 99");
+        } else {
+            this.pattern = Either.right(generateNumberRangePattern(number));
         }
-        this.pattern = generateNumberRangePattern(number);
     }
 
     private String generateNumberRangePattern(int number) {
@@ -29,7 +35,7 @@ public class NumberRangePattern {
         return pattern.toString();
     }
 
-    public String getPattern() {
+    public Either<String, String> getPattern() {
         return pattern;
     }
 }
